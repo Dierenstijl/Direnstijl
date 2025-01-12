@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dierenstijl Boutique</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Raleway:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    /* GLOBAL SETTINGS */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* HEADER */
+    header {
+      background-color: #374d38; /* Vert profond */
+      color: #e1c66d; /* Doré doux */
+      padding: 60px 10px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5em;
+      margin: 0;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    /* NAVIGATION */
+    nav {
+      background-color: #4e5b4e;
+      padding: 15px 0;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    nav a {
+      color: #e1c66d;
+      font-weight: 600;
+      font-size: 1.2em;
+      padding: 10px 25px;
+      text-transform: uppercase;
+      transition: color 0.3s ease, border-bottom 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #fff;
+      border-bottom: 3px solid #e1c66d;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      background-image: url('images/hero.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 70vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #e1c66d;
+      text-align: center;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5em;
+      letter-spacing: 4px;
+      margin-bottom: 20px;
+      animation: fadeInUp 2s ease-in-out;
+    }
+
+    .hero p {
+      font-size: 1.3em;
+      max-width: 800px;
+      margin: 0 auto;
+      animation: fadeInUp 2.5s ease-in-out;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* CONTENT SECTIONS */
+    .content-section {
+      padding: 80px 50px;
+      text-align: center;
+    }
+
+    .content-section h2 {
+      font-size: 2.5em;
+      color: #374d38;
+      margin-bottom: 20px;
+    }
+
+    .content-section p {
+      font-size: 1.1em;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* QUOTE */
+    .quote {
+      font-size: 1.5em;
+      font-style: italic;
+      color: #e1c66d;
+      margin: 40px auto;
+      max-width: 800px;
+    }
+
+    .quote p {
+      margin-bottom: 10px;
+    }
+
+    .quote cite {
+      font-size: 1.1em;
+      color: #374d38;
+    }
+
+    /* PRODUCTS */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 60px 80px;
+    }
+
+    .product-card {
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .product-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8em;
+      color: #374d38;
+      margin: 20px 0;
+    }
+
+    .product-card p {
+      font-size: 1.2em;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .product-card button {
+      background-color: #e1c66d;
+      color: #fff;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.1em;
+      font-weight: 600;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .product-card button:hover {
+      background-color: #b89d4c;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #374d38;
+      color: #fff;
+      padding: 50px 20px;
+      text-align: center;
+      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    footer p {
+      font-size: 1.2em;
+    }
+
+    footer .social-media {
+      margin-top: 20px;
+    }
+
+    footer .social-media a {
+      font-size: 1.5em;
+      margin: 0 15px;
+      color: #e1c66d;
+      transition: color 0.3s ease;
+    }
+
+    footer .social-media a:hover {
+      color: #fff;
+    }
+
+    /* MEDIA QUERIES */
+    @media (max-width: 768px) {
+      .product-grid {
+        padding: 60px 20px;
+      }
+
+      .hero h2 {
+        font-size: 2.5em;
+      }
+
+      .hero p {
+        font-size: 1.2em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Dierenstijl Boutique</h1>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Collectie</a>
+    <a href="#">Over Ons</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <div class="hero">
+    <h2>Elegante Mode voor Huisdieren</h2>
+    <p>Onze exclusieve collecties bieden stijl en comfort voor jouw huisdier, ontworpen met oog voor detail en luxe.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Introductie</h2>
+    <p>We zijn een probleem tegengekomen. Stijlvolle huisdieren hebben of koud of geen comfort. Daarom hebben we een innovatieve pop-up opgezet. De naam van deze oplossing: "DierenStijl". Onze doel is om ambachtelijke kleding en accessoires voor uw huisdier te maken die handig en warm zouden zijn.</p>
+    <p>Inderdaad, veel mensen maken zich veel zorgen over de stijl en het comfort van hun huisdieren. Hier begint de mode, want jouw huisdier verdient dezelfde zorg en aandacht als jij als het gaat om mode.</p>
+  </div>
+
+  <div class="quote">
+    <p>"Mode voor huisdieren is niet alleen een trend, het is een levensstijl die de band tussen eigenaar en huisdier versterkt. Comfort en stijl gaan hand in hand."</p>
+    <cite>- DierenStijl Team</cite>
+  </div>
+
+  <div class="content-section">
+    <h2>Inhoud en Ambachtelijkheid</h2>
+    <p>Onze producten zijn handgemaakt door vakmensen uit Marokko, wat niet alleen kwaliteit garandeert, maar ook een sociaal doel ondersteunt. We werken samen met een NGO om eerlijke handel te bevorderen en de werkomstandigheden te verbeteren.</p>
+    <p>Wij verkopen luxueuze en comfortabele kleding voor uw huisdieren, waaronder jassen, overhemden, strikken, kostuums, coltruien, bontjassen, en nog veel meer.</p>
+  </div>
+
+  <div class="product-grid">
+    <div class="product-card">
+      <img src="http://theymademewear.it/cdn/shop/products/pug-wearing-3-piece-suit-for-dogs-khaki-closed-they-made-me-wear-it.jpg" alt="Dierenjasje" style="width: 80%; height: auto;">
+      <h3>Stijlvol Dierenjasje</h3>
+      <p>Voor de winter, elegant en comfortabel. Verkrijgbaar in verschillende maten.</p>
+      <button>Koop nu</button>
+    </div>
+    <div class="product-card">
+      <img src="https://i.etsystatic.com/9404699/r/il/8cafc3/2065173482/il_794xN.2065173482_kei1.jpg" alt="Dierenhoodie" style="width: 80%; height: auto;">
+      <h3>Chique Dierenhoodie</h3>
+      <p>Comfortabel en modieus, voor dagelijkse stijl en luxe.</p>
+      <button>Koop nu</button>
+    </div>
+    <div class="product-card">
+      <img src="https://img.joomcdn.net/61a0653a0b6d1cff08ab34d58c8b7b93fbada223_original.jpeg" alt="Dierenjurk" style="width: 80%; height: auto;" >
+      <h3>Elegante Dierenjurk</h3>
+      <p>Voor de spring<p>
+      <button>Koop nu</button>
+
