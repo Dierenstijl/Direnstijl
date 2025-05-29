@@ -1,300 +1,614 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dierenstijl Boutique</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Raleway:wght@300;600&display=swap" rel="stylesheet">
-  <style>
-    /* GLOBAL SETTINGS */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>African National Parks: A Subjective Ranking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for Themes */
+        :root {
+            /* Default: Dark Theme */
+            --bg-color: #1a1a1a;
+            --card-bg: #2a2a2a;
+            --text-color: #E0E0E0;
+            --secondary-text-color: #BBBBBB;
+            --accent-color: #e8a93e;
+            --border-color: #444444;
+            --input-bg: #333333;
+            --input-text-color: #FFFFFF;
+            --header-border: #444444;
+        }
 
-    body {
-      font-family: 'Raleway', sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-      line-height: 1.7;
-    }
+        /* Light Theme overrides */
+        body.light-theme {
+            --bg-color: #f8f8f8;
+            --card-bg: #FFFFFF;
+            --text-color: #4a4a4a;
+            --secondary-text-color: #666666;
+            --accent-color: #3a506b; /* Changed accent for light theme contrast */
+            --border-color: #e0e0e0;
+            --input-bg: #f0f0f0;
+            --input-text-color: #333333;
+            --header-border: #eee;
+        }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
 
-    /* HEADER */
-    header {
-      background-color: #374d38; /* Vert profond */
-      color: #e1c66d; /* Doré doux */
-      padding: 60px 10px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
+        .container {
+            max-width: 960px;
+            margin: 40px auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
 
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.5em;
-      margin: 0;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-    }
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 1px solid var(--header-border);
+            padding-bottom: 30px;
+            transition: border-color 0.3s ease;
+        }
 
-    /* NAVIGATION */
-    nav {
-      background-color: #4e5b4e;
-      padding: 15px 0;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    }
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2em;
+            color: var(--accent-color); /* Title in accent color for pop */
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
 
-    nav a {
-      color: #e1c66d;
-      font-weight: 600;
-      font-size: 1.2em;
-      padding: 10px 25px;
-      text-transform: uppercase;
-      transition: color 0.3s ease, border-bottom 0.3s ease;
-    }
+        header p {
+            font-size: 1.1em;
+            color: var(--secondary-text-color);
+            max-width: 700px;
+            margin: 0 auto;
+        }
 
-    nav a:hover {
-      color: #fff;
-      border-bottom: 3px solid #e1c66d;
-    }
+        .intro-text {
+            background-color: var(--input-bg);
+            border-left: 5px solid var(--accent-color);
+            margin-bottom: 30px;
+            padding: 15px 25px;
+            color: var(--text-color);
+            font-size: 1.05em;
+            line-height: 1.6;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
 
-    /* HERO SECTION */
-    .hero {
-      background-image: url('images/hero.jpg');
-      background-size: cover;
-      background-position: center;
-      height: 70vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #e1c66d;
-      text-align: center;
-      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
-    }
+        .intro-text strong {
+            color: var(--accent-color);
+        }
 
-    .hero h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.5em;
-      letter-spacing: 4px;
-      margin-bottom: 20px;
-      animation: fadeInUp 2s ease-in-out;
-    }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 10px 0;
+        }
 
-    .hero p {
-      font-size: 1.3em;
-      max-width: 800px;
-      margin: 0 auto;
-      animation: fadeInUp 2.5s ease-in-out;
-    }
+        .search-container {
+            flex-grow: 1; /* Allows search bar to take available space */
+            margin-right: 40px; /* Space between search and toggle */
+        }
 
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+        #parkSearch {
+            width: 100%; /* Make it fill its container */
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            background-color: var(--input-bg);
+            color: var(--input-text-color);
+            font-size: 1.1em;
+            outline: none;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+            transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+        }
 
-    /* CONTENT SECTIONS */
-    .content-section {
-      padding: 80px 50px;
-      text-align: center;
-    }
+        #parkSearch::placeholder {
+            color: var(--secondary-text-color);
+        }
 
-    .content-section h2 {
-      font-size: 2.5em;
-      color: #374d38;
-      margin-bottom: 20px;
-    }
+        #parkSearch:focus {
+            border-color: var(--accent-color);
+        }
 
-    .content-section p {
-      font-size: 1.1em;
-      color: #555;
-      line-height: 1.6;
-      margin-bottom: 30px;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
 
-    /* QUOTE */
-    .quote {
-      font-size: 1.5em;
-      font-style: italic;
-      color: #e1c66d;
-      margin: 40px auto;
-      max-width: 800px;
-    }
+        #themeToggle {
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
 
-    .quote p {
-      margin-bottom: 10px;
-    }
+        #themeToggle:hover {
+            background-color: var(--accent-color);
+            color: #fff;
+            border-color: var(--accent-color);
+        }
 
-    .quote cite {
-      font-size: 1.1em;
-      color: #374d38;
-    }
+        .park-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
 
-    /* PRODUCTS */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      padding: 60px 80px;
-    }
+        .park-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-    .product-card {
-      background-color: #fff;
-      border-radius: 15px;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      overflow: hidden;
-      text-align: center;
-    }
+        .park-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
 
-    .product-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    }
+        .park-item h2 {
+            font-family: 'Playfair Display', serif;
+            margin-top: 0;
+            color: var(--text-color);
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+            /* Add pointer cursor to indicate it's clickable */
+            cursor: pointer;
+        }
+        
+        .park-item h2:hover {
+            text-decoration: underline; /* Visual cue for clickability */
+        }
 
-    .product-card img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-    }
+        .park-item p {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 0;
+        }
 
-    .product-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8em;
-      color: #374d38;
-      margin: 20px 0;
-    }
-
-    .product-card p {
-      font-size: 1.2em;
-      color: #555;
-      margin-bottom: 20px;
-    }
-
-    .product-card button {
-      background-color: #e1c66d;
-      color: #fff;
-      border: none;
-      padding: 12px 25px;
-      font-size: 1.1em;
-      font-weight: 600;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .product-card button:hover {
-      background-color: #b89d4c;
-    }
-
-    /* FOOTER */
-    footer {
-      background-color: #374d38;
-      color: #fff;
-      padding: 50px 20px;
-      text-align: center;
-      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    footer p {
-      font-size: 1.2em;
-    }
-
-    footer .social-media {
-      margin-top: 20px;
-    }
-
-    footer .social-media a {
-      font-size: 1.5em;
-      margin: 0 15px;
-      color: #e1c66d;
-      transition: color 0.3s ease;
-    }
-
-    footer .social-media a:hover {
-      color: #fff;
-    }
-
-    /* MEDIA QUERIES */
-    @media (max-width: 768px) {
-      .product-grid {
-        padding: 60px 20px;
-      }
-
-      .hero h2 {
-        font-size: 2.5em;
-      }
-
-      .hero p {
-        font-size: 1.2em;
-      }
-    }
-  </style>
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--secondary-text-color);
+            font-size: 0.9em;
+            transition: border-color 0.3s ease, color 0.3s ease;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>African National Parks</h1>
+            <p>A Curated List of Premier Wildlife Destinations</p>
+        </header>
 
-  <header>
-    <h1>Dierenstijl Boutique</h1>
-  </header>
+        <div class="intro-text">
+            <p>Welcome to a compilation of various African National Parks and Reserves! Please note that these ratings are <b>subjective</b> and are purely based on visual impressions gathered from <b>Google Photos</b>, not on personal visits or extensive on-site experience.</p>
+        </div>
 
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Collectie</a>
-    <a href="#">Over Ons</a>
-    <a href="#">Contact</a>
-  </nav>
+        <div class="controls">
+            <div class="search-container">
+                <input type="text" id="parkSearch" onkeyup="filterParks()" placeholder="Search for a park...">
+            </div>
+            <div class="theme-toggle">
+                <button id="themeToggle">Switch Theme</button>
+            </div>
+        </div>
 
-  <div class="hero">
-    <h2>Elegante Mode voor Huisdieren</h2>
-    <p>Onze exclusieve collecties bieden stijl en comfort voor jouw huisdier, ontworpen met oog voor detail en luxe.</p>
-  </div>
+        <div class="park-grid" id="parkGrid">
+            <div class="park-item">
+                <h2>Serengeti</h2>
+                <p>Score: 9/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Massai Mara</h2>
+                <p>Score: 8.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Etosha</h2>
+                <p>Score: 6/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Akagera</h2>
+                <p>Score: 6.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Kruger</h2>
+                <p>Score: 9/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Ngorongoro</h2>
+                <p>Score: 5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Amboseli</h2>
+                <p>Score: 8/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Arusha</h2>
+                <p>Score: 7/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Kalahari</h2>
+                <p>Score: 6/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Mana Pools</h2>
+                <p>Score: 6.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Busanga Kafue</h2>
+                <p>Score: 6/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Katavi</h2>
+                <p>Score: 7/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Okavango Delta</h2>
+                <p>Score: 6.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Namib</h2>
+                <p>Score: 5.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Virunga</h2>
+                <p>Score: 7/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Volcanoes</h2>
+                <p>Score: 6.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Nyungwe</h2>
+                <p>Score: 7/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Bwindi</h2>
+                <p>Score: 7.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Aberdare</h2>
+                <p>Score: 7/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Arabuko Sokoke</h2>
+                <p>Score: 5.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Tarangire</h2>
+                <p>Score: 8/10</p>
+            </div>
+            <div class="park-item">
+                <h2 onclick="redirectToWPark()">W</h2> <p>Score: 5.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Waza</h2>
+                <p>Score: 7/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Loango</h2>
+                <p>Score: 6.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Dzanga Sangha</h2>
+                <p>Score: 7.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Queen Elizabeth</h2>
+                <p>Score: 8/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Hwange</h2>
+                <p>Score: 7/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Chobe</h2>
+                <p>Score: 6.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>South Luangwa</h2>
+                <p>Score: 6.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>iSimangaliso Wetland</h2>
+                <p>Score: 6/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Kahuzi Biega</h2>
+                <p>Score: 5.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Garamba</h2>
+                <p>Score: 7/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Manovo Gounda St Floris</h2>
+                <p>Score: 6/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Selous</h2>
+                <p>Score: 6.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Okapi</h2>
+                <p>Score: 5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Atsinanana</h2>
+                <p>Score: 6/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Kilimanjaro</h2>
+                <p>Score: 7.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Rubondo</h2>
+                <p>Score: 5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Mahale</h2>
+                <p>Score: 6/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Manyara</h2>
+                <p>Score: 7.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Mkomazi</h2>
+                <p>Score: 6.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Saadani</h2>
+                <p>Score: 7.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Udzungwa Mountains</h2>
+                <p>Score: 6/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Mikumi</h2>
+                <p>Score: 7/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Ruaha</h2>
+                <p>Score: 6.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Kitulo</h2>
+                <p>Score: 5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Jozani Chwaka Bay</h2>
+                <p>Score: 5.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Gombe Stream</h2>
+                <p>Score: 5.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Zakouma</h2>
+                <p>Score: 6/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Kgalagadi</h2>
+                <p>Score: 6.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Arguin</h2>
+                <p>Score: 5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Chinko</h2>
+                <p>Score: 5.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Ruaha</h2>
+                <p>Score: 7/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Ugalla</h2>
+                <p>Score: 6.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Udzungwa</h2>
+                <p>Score: 5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Uwanda</h2>
+                <p>Score: 6.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Burigi</h2>
+                <p>Score: 7/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Maswa</h2>
+                <p>Score: 7.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Rumanyika Karagwe</h2>
+                <p>Score: 7.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Biharamulo</h2>
+                <p>Score: 6/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Grumeti</h2>
+                <p>Score: 7.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Rungwa</h2>
+                <p>Score: 7/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Kidigo</h2>
+                <p>Score: 6.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>East and West Tsavo</h2>
+                <p>Score: 7.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Arawale</h2>
+                <p>Score: 5.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Meru</h2>
+                <p>Score: 6.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Sibiloi</h2>
+                <p>Score: 5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Marsabit</h2>
+                <p>Score: 5.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Losal</h2>
+                <p>Score: 5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Samburu</h2>
+                <p>Score: 8/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Shaba</h2>
+                <p>Score: 7.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Laikipia</h2>
+                <p>Score: 6/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Mount Kenya</h2>
+                <p>Score: 5.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Pilanesberg</h2>
+                <p>Score: 7.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Karoo</h2>
+                <p>Score: 5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Mountains Zebra</h2>
+                <p>Score: 5.5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Namaqua</h2>
+                <p>Score: 5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Bontebok</h2>
+                <p>Score: 5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Cape Of Good Hope</h2>
+                <p>Score: 6/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Golden Gate Highlands</h2>
+                <p>Score: 5/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Hluhluwe</h2>
+                <p>Score: 7/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Drakensberg</h2>
+                <p>Score: 6/10</p>
+            </div>
+            <div class="park-item">
+                <h2>Santa Lucia</h2>
+                <p>Score: 5.5/10</p>
+            </div>
+        </div>
 
-  <div class="content-section">
-    <h2>Introductie</h2>
-    <p>We zijn een probleem tegengekomen. Stijlvolle huisdieren hebben of koud of geen comfort. Daarom hebben we een innovatieve pop-up opgezet. De naam van deze oplossing: "DierenStijl". Onze doel is om ambachtelijke kleding en accessoires voor uw huisdier te maken die handig en warm zouden zijn.</p>
-    <p>Inderdaad, veel mensen maken zich veel zorgen over de stijl en het comfort van hun huisdieren. Hier begint de mode, want jouw huisdier verdient dezelfde zorg en aandacht als jij als het gaat om mode.</p>
-  </div>
-
-  <div class="quote">
-    <p>"Mode voor huisdieren is niet alleen een trend, het is een levensstijl die de band tussen eigenaar en huisdier versterkt. Comfort en stijl gaan hand in hand."</p>
-    <cite>- DierenStijl Team</cite>
-  </div>
-
-  <div class="content-section">
-    <h2>Inhoud en Ambachtelijkheid</h2>
-    <p>Onze producten zijn handgemaakt door vakmensen uit Marokko, wat niet alleen kwaliteit garandeert, maar ook een sociaal doel ondersteunt. We werken samen met een NGO om eerlijke handel te bevorderen en de werkomstandigheden te verbeteren.</p>
-    <p>Wij verkopen luxueuze en comfortabele kleding voor uw huisdieren, waaronder jassen, overhemden, strikken, kostuums, coltruien, bontjassen, en nog veel meer.</p>
-  </div>
-
-  <div class="product-grid">
-    <div class="product-card">
-      <img src="http://theymademewear.it/cdn/shop/products/pug-wearing-3-piece-suit-for-dogs-khaki-closed-they-made-me-wear-it.jpg" alt="Dierenjasje" style="width: 80%; height: auto;">
-      <h3>Stijlvol Dierenjasje</h3>
-      <p>Voor de winter, elegant en comfortabel. Verkrijgbaar in verschillende maten.</p>
-      <button>Koop nu</button>
+        <footer>
+            <p>&copy; 2025 African National Parks Ranking. All ratings are subjective and based on Google Photos.</p>
+        </footer>
     </div>
-    <div class="product-card">
-      <img src="https://i.etsystatic.com/9404699/r/il/8cafc3/2065173482/il_794xN.2065173482_kei1.jpg" alt="Dierenhoodie" style="width: 80%; height: auto;">
-      <h3>Chique Dierenhoodie</h3>
-      <p>Comfortabel en modieus, voor dagelijkse stijl en luxe.</p>
-      <button>Koop nu</button>
-    </div>
-    <div class="product-card">
-      <img src="https://img.joomcdn.net/61a0653a0b6d1cff08ab34d58c8b7b93fbada223_original.jpeg" alt="Dierenjurk" style="width: 80%; height: auto;" >
-      <h3>Elegante Dierenjurk</h3>
-      <p>Voor de lente.<p>
-      <button>Koop nu</button>
 
+    <script>
+        // Theme Toggle Functionality
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('light-theme');
+            // Store preference in local storage
+            if (document.body.classList.contains('light-theme')) {
+                localStorage.setItem('theme', 'light');
+            } else {
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Apply saved theme on load
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('theme') === 'light') {
+                document.body.classList.add('light-theme');
+            }
+        });
+
+        // Search Filter Functionality
+        function filterParks() {
+            var input, filter, parkGrid, parkItems, h2, i, txtValue;
+            input = document.getElementById('parkSearch');
+            filter = input.value.toUpperCase();
+            parkGrid = document.getElementById('parkGrid');
+            parkItems = parkGrid.getElementsByClassName('park-item');
+
+            for (i = 0; i < parkItems.length; i++) {
+                h2 = parkItems[i].getElementsByTagName('h2')[0];
+                txtValue = h2.textContent || h2.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    parkItems[i].style.display = "";
+                } else {
+                    parkItems[i].style.display = "none";
+                }
+            }
+        }
+
+        // Redirect function for "W" park
+        function redirectToWPark() {
+            // You can replace this URL with any link you want
+            window.open('https://spacewaves.io/', '_blank');
+        }
+    </script>
+</body>
+</html>
